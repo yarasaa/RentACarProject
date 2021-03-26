@@ -16,5 +16,13 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Car> tblCars { get; set; }
         public DbSet<Brand> tblBrands { get; set; }
         public DbSet<Color> tblColors { get; set; }
+
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.HasDefaultSchema("admin") şema veriliyor
+        //    modelBuilder.Entity<Car>().Property(x => x.Id).HasColumnName("test"); Column name farklıysa bu şekilde birbirine bağlayabiliyoruz.
+        //    //ismi farklı olan propertiesi sql tablosuna bağlamak modelBuilder.Entity<Cars>().ToTable("Cars")
+        //}
     }
 }
