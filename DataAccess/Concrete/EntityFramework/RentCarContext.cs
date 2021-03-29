@@ -16,6 +16,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Car> tblCars { get; set; }
         public DbSet<Brand> tblBrands { get; set; }
         public DbSet<Color> tblColors { get; set; }
+        public DbSet<Customer> tblCustomers { get; set; }
+        public DbSet<User> tblUsers { get; set; }
+        public DbSet<Rental> tblRentals { get; set; }
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
