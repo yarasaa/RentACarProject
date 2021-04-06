@@ -6,56 +6,39 @@ using System.Text;
 
 namespace Core.Utilities.Helpers
 {
-   public class FileHelper
+
+    public class FileHelper
     {
-        public static string AddAsync(IFormFile file)
+        public static string Add(IFormFile file)
         {
             var result = newPath(file);
-            try
-            {
-                var sourcepath = Path.GetTempFileName();
-                if (file.Length > 0)
-                    using (var stream = new FileStream(sourcepath, FileMode.Create))
-                        file.CopyTo(stream);
 
-                File.Move(sourcepath, result.newPath);
-            }
-            catch (Exception exception)
-            {
+            var sourcepath = Path.GetTempFileName();
 
-                return exception.Message;
+            using (var stream = new FileStream(sourcepath, FileMode.Create))
+            {
+                file.CopyTo(stream);
             }
+
+            File.Move(sourcepath, result.newPath);
 
             return result.Path2;
         }
 
-        public static string UpdateAsync(string sourcePath, IFormFile file)
+        public static string Update(string sourcePath, IFormFile file)
         {
             var result = newPath(file);
-
-            try
+            using (var stream = new FileStream(result.newPath, FileMode.Create))
             {
-                //File.Copy(sourcePath,result);
-
-                if (sourcePath.Length > 0)
-                {
-                    using (var stream = new FileStream(result.newPath, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
-                }
-
-                File.Delete(sourcePath);
+                file.CopyTo(stream);
             }
-            catch (Exception excepiton)
-            {
-                return excepiton.Message;
-            }
+
+            File.Delete(sourcePath);
 
             return result.Path2;
         }
 
-        public static IResult DeleteAsync(string path)
+        public static IResult Delete(string path)
         {
             File.Delete(path);
             return new SuccessResult();
@@ -65,20 +48,11 @@ namespace Core.Utilities.Helpers
         {
             FileInfo ff = new FileInfo(file.FileName);
             string fileExtension = ff.Extension;
-
-            var creatingUniqueFilename = Guid.NewGuid().ToString("N")
-               + "_" + DateTime.Now.Month + "_"
-               + DateTime.Now.Day + "_"
-               + DateTime.Now.Year + fileExtension;
-
-
-            string path = Environment.CurrentDirectory + @"\wwwroot\Images";
-
-            string result = $@"{path}\{creatingUniqueFilename}";
-
-            return (result, $"\\Images\\{creatingUniqueFilename}");
-
-
+            var newFileName = Guid.NewGuid().ToString("N") + fileExtension;
+            string path12 = @"\wwwroot\Images\";
+            string result = Environment.CurrentDirectory + path12 + newFileName;
+            return (result, $"\\Images\\{newFileName}");
         }
     }
+
 }

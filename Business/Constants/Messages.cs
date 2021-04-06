@@ -41,5 +41,6 @@ namespace Business.Constants
         internal static string UpdatedCarImage;
         internal static string FailedCarImageAdd;
         internal static string AddedCarImage;
+        internal static string CarImagesLimitExceded;
     }
 }
