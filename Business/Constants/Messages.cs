@@ -9,10 +9,10 @@ namespace Business.Constants
     {
         public static string CarAdded = "Ürün eklendi.";
         public static string CarDeleted = "Ürün eklendi.";
-        public static string CarUpdated = "Ürün eklendi.";
+        public static string CarUpdated = "Ürün güncellendi.";
         public static string CarNameInvalid = "Ürün eklendi.";
         public static string MaintenanceTime = "Bakım var";
-        public static string CarListed = "Ürün eklendi.";
+        public static string CarListed = "Ürün listelendi.";
 
         public static string BrandAdded = "Marka eklendi.";
         public static string BrandDeleted = "MarkaÜrün eklendi.";
